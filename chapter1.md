@@ -15,6 +15,12 @@ our protocol work is done. This differs from most Internet Protocols, which
 typically use different request and response structures. On a high level, a DNS
 packet looks as follows:
 
+まずはDNSプロトコルを調査し、その知識を使って簡単なクライアントを実装してみます。
+
+従来、DNSのパケットはUDPトランスポートを使用して送信され、512バイトに制限されています。後ほど紹介しますが、この2つのルールには例外があります。DNSはTCPでも利用でき、eDNSと呼ばれる仕組みを利用すれば、パケットサイズを拡張することが可能です。今は、元の仕様にこだわりますが。
+
+DNSは、問い合わせと応答が同じフォーマットで行われるという意味で、非常に便利です。つまり、パケットパーサーとパケットライターを書けば、プロトコルの仕事は終わりです。これは、一般的に異なるリクエストとレスポンスの構造を使用する、ほとんどのインターネットプロトコルとは異なります。DNSのパケットを簡単に説明すると、次のようになります。
+
 | Section            | Size     | Type              | Purpose                                                                                                |
 | ------------------ | -------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
 | Header             | 12 Bytes | Header            | Information about the query/response.                                                                  |
